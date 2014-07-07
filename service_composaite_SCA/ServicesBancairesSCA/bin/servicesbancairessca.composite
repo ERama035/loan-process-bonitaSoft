@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+	targetNamespace="http://servicesbancairessca" xmlns:hw="http://servicesbancairessca" name="servicesbancairesws">
+	<component name="ServicesBancairesServiceComponent">
+		<implementation.java class="servicesbancairessca.ServicesBancairesImpl" />
+		<service name="ServicesBancairesService">
+			<binding.ws uri="http://localhost:8185/ServicesBancairesService" />
+		</service>
+	</component>
+</composite> 

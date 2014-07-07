@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:deployement.validationWS="http://deployement.validationWS" xmlns:servicesBancaires="http://servicesBancaires">
+  <process name="servicesBancaires:servicesBancaires">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="servicesBancaires:servicesBancairesService" port="servicesBancairesPort"/>
+    </provide>
+    <invoke partnerLink="ValidationWSPL">
+      <service name="deployement.validationWS:ValidationCheque" port="ValidationChequeHttpEndpoint"/>
+    </invoke>
+  </process>
+</deploy>

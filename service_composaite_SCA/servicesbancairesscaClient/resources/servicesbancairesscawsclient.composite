@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+	targetNamespace="http://servicesbancairessca" xmlns:hw="http://servicesbancairessca" name="servicesbancairesscawsclient">
+	<!-- A component with a reference promoted as a composite reference -->
+	<component name="WebServiceClient">
+	<implementation.java class="servicesbancairesscaClient.WebServiceClient" />
+	</component>
+	<reference name="ServicesBancairesService"
+	promote="WebServiceClient/servicesBancairesService">
+	<binding.ws
+	wsdlElement="http://servicesbancairessca#wsdl.service(ServicesBancairesService)" />
+	</reference>
+</composite>

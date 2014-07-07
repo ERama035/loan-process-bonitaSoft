@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://servicesbancairessca"
+	xmlns:tns="http://servicesbancairessca" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="servicesbancairessca">
+
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://servicesbancairessca"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+
+			<element name="validerCheque">
+				<complexType>
+					<sequence>
+						<element name="montantCheque" type="xsd:double" />
+						<element name="soldeDisponible" type="xsd:double" />						
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="validerChequeResponse">
+				<complexType>
+					<sequence>
+						<element name="validerChequeReturn" type="xsd:double" />
+					</sequence>
+				</complexType>
+			</element>
+
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="validerChequeRequest">
+		<wsdl:part element="tns:validerCheque" name="parameters" />
+		<wsdl:part element="tns:validerCheque" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="validerChequeResponse">
+		<wsdl:part element="tns:validerChequeResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:portType name="ServicesBancaires">
+		<wsdl:operation name="validerCheque">
+			<wsdl:input message="tns:validerChequeRequest" name="validerChequeRequest" />
+			<wsdl:output message="tns:validerChequeResponse" name="validerChequeResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="ServicesBancairesSoapBinding" type="tns:ServicesBancaires">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="validerCheque">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validerChequeRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="validerChequeResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:binding name="ServicesBancairesSoapJmsBinding" type="tns:ServicesBancaires">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/jms" />
+		<wsdl:operation name="validerCheque">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="validerChequeRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="validerChequeResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ServicesBancairesService">
+		<wsdl:port binding="tns:ServicesBancairesSoapBinding" name="ServicesBancairesSoapPort">
+			<wsdlsoap:address location="http://localhost:8185/ServicesBancairesService" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
