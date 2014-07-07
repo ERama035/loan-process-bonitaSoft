@@ -6,9 +6,9 @@ Simulation d'un processus de prêt bancaire avec un workflow et une composition 
 Organisation
 
 Le workflow est organisé en 3 pools: 
-	1.Pool "Portail Clients"
-	2.Pool "Portail Services Financiers"
-	3.Pool "Portail Services Partenaires"
+	-1.Pool "Portail Clients"
+	-2.Pool "Portail Services Financiers"
+	-3.Pool "Portail Services Partenaires"
 
 ------------------------------
 Hypothèses
@@ -17,13 +17,13 @@ Hypothèses
 -Si le montant du prêt demandé >=100,000 la demande sera rejetée et le client reçeva une notification préliminaire de refus.
 -Le niveau de risque associé à un client est calculé sur la base de son solde disponible
  
-	Si montantPrêt>=2*soldeDisponible alors risque = high
+	-Si montantPrêt>=2*soldeDisponible alors risque = high
 		si montantPrêt>20.000 alors refus
 		sinon résultat positif de l’étude de risque
 
-	Si soldeDisponible<montantPrêt<2*soldeDisponible alors risque = medium et résultat positif de l’étude de risque		
+	-Si soldeDisponible<montantPrêt<2*soldeDisponible alors risque = medium et résultat positif de l’étude de risque		
 
-	Sinon risque = low et résultat positif de l’étude de risque
+	-Sinon risque = low et résultat positif de l’étude de risque
 
 -Si le résultat de l'étude du risque est positive, on demande au client de déposer un chèque dont le montant sera déduit du 
 montant du prêt qu'il demande.
@@ -71,6 +71,7 @@ Scénario1	: Si la vérification préliminaire n'aboutit pas
 EN TANT QUE CLIENT 
 	- Recevoir le résultat de vérification préliminaire avec une notification de refus et une explication de la cause
 	- Arrêt
+
 EN TANT QUE ADMIN
 	- Arrêt
 
@@ -83,37 +84,44 @@ EN TANT QUE ADMIN
 
 ==> lancement des scripts de vérification du niveau de risque
 
-Scénario2.1	: Si l'étude de risque n'aboutit pas
+Scénario2.1	: 
+- Si l'étude de risque n'aboutit pas
 EN TANT QUE ADMIN
 	- Refuser la demande suite à l'étude de risque
 	- Arrêt
 
-EN TANT QUE CLIENT
+- EN TANT QUE CLIENT
 	- Recevoir le résultat de l'étude de risque
 	- Recevoir la cause de refus 1
 	- Arrêt
 
-Scénario 2.2	: Si l'étude de risque aboutit
+Scénario 2.2	: 
+- Si l'étude de risque aboutit
 ==> lancement du script de calcul du montant du chèque à déposer
 EN TANT QUE ADMIN
 	- Attendre le dépôt du chèque
 	- Vérifier le résultat de vérification du chèque
+	
 EN TANT QUE CLIENT
 	- Déposer le chèque
 ==> appel au process BPEL de validation
 
-Scénario 2.2.1	: Si le chèque n'a pas été validé
+Scénario 2.2.1	:
+- Si le chèque n'a pas été validé
 EN TANT QUE ADMIN
 	- Arrêt
+	- 
 EN TANT QUE CLIENT
 	- Recevoir la cause de refus 2
 	- Arrêt
 
-Scénario 2.2.2	: Si le chèque a été validé
+Scénario 2.2.2	:
+- Si le chèque a été validé
 ==> appel au service Web du Provider
 EN TANT QUE ADMIN
 	- Accord et versement 
 	- Arrêt
+	- 
 EN TANT QUE CLIENT
 	- Recevoir la notification de l'accord et du versement
 	- Arrêt
