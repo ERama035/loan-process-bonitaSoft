@@ -7,20 +7,20 @@ Simulation d'un processus de prêt bancaire avec un workflow et une composition 
 Organisation
 
 Le workflow est organisé en 3 pools: 
-	* Pool "Portail Clients"
-	* Pool "Portail Services Financiers"
-	* Pool "Portail Services Partenaires"
+- Pool "Portail Clients"
+- Pool "Portail Services Financiers"
+- Pool "Portail Services Partenaires"
 
 ------------------------------
 Setup
 
-Serveur ODE 	: port 8080
+- Serveur ODE 	: port 8080
 
-Serveur Tomcat	: tomcat admin port	: 8030
+- Serveur Tomcat	: tomcat admin port: 8030
 
-		: HTTP/1.1		: 8091
+-   			: HTTP/1.1: 8091
 		
-		: AJP/1.3		: 8012
+-			: AJP/1.3: 8012
 		
 - Le Service Rest : ClientInfosRestService utilise le port 8182
 - Les Services web ValidationWS et ProviderWS utilisent le port 8091
