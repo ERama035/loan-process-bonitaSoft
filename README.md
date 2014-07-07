@@ -4,6 +4,7 @@ loan-process-bonitaSoft
 Simulation d'un processus de prêt bancaire avec un workflow et une composition de services
 ------------------------------
 Organisation
+
 Le workflow est organisé en 3 pools: 
 	1.Pool "Portail Clients"
 	2.Pool "Portail Services Financiers"
@@ -11,6 +12,7 @@ Le workflow est organisé en 3 pools:
 
 ------------------------------
 Hypothèses
+
 -Le montant maximal accepté pour une demande de prêt est fixé à 100,000
 -Si le montant du prêt demandé >=100,000 la demande sera rejetée et le client reçeva une notification préliminaire de refus.
 -Le niveau de risque associé à un client est calculé sur la base de son solde disponible
@@ -34,6 +36,7 @@ montant du prêt qu'il demande.
 
 ------------------------------
 Setup
+
 Serveur ODE 	: port 8080
 Serveur Tomcat	: tomcat admin port	: 8030
 		: HTTP/1.1		: 8091
@@ -45,12 +48,14 @@ Le service composite SCA a été développé sur deux projets java : ServicesBan
 
 ------------------------------
 Exécution
+
 -Exécuter la classe RestDistributor du projet java ClientInfosRestService
 -Exécuter les web servies : ValidationWS et ProviderWS
 -Exécuter le BPEL 
 
 
 EN TANT QUE CLIENT 
+
 	- Démarrer un cas "Portail Clients"
 	- Saisir son id (id acceptables: 111, 222, 333)
 	- Le service REST se charge de la récupération des informations disponibles sur le client à partir de l'id fourni
@@ -58,6 +63,7 @@ EN TANT QUE CLIENT
 	- Attendre le résultat de vérification préliminaire
 	
 EN TANT QUE ADMIN
+
 	- Démarrer un cas "Portail Services Partenaires"
 
 
