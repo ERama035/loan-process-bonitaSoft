@@ -32,3 +32,4 @@ Exécution
 - Exécuter la classe RestDistributor du projet java ClientInfosRestService
 - Exécuter les web servies : ValidationWS et ProviderWS
 - Exécuter le BPEL 
+
